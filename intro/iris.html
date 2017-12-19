@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<link type="text/css" href="css/iris_css.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>Building an Interactive View of the <a
+				href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris Data
+				Set</a>
+		</h1>
+		<div>
+		This page is a test bed, constructed for the purpose of comparing a static view of
+		the Iris Data Set with an interactive one. The static view is constructed with
+    		Python's <a href="http://matplotlib.org/>matplotlib">matplotlib</a> library. The 
+		interactive view, embedded in this page, is contructed with <a 
+		href="https://d3js.org/">D3</a>. The first task is to visually inspect the data.
+		</div>
+		<br/>
+		<div id="iris_table_container">
+			<div id="iris_table"></div>
+			<div id="iris_img">
+				<div id="iris_img_caption">Setosa</div>
+				<img src="http://www.badbear.com/signa/photos/Iris-setosa-23.jpg"
+				alt="Picture of an Iris" width=100%>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<div>
+			Now that we have a sense of what individual observations look like, we can
+			evaluate the relationships between different attributes of the Iris. For the
+			time being, we will limit ourselves to looking at only the relationship
+			between sepal length and sepal width.
+		</div>
+		<br/>
+		<br/>
+		<div id="iris_scatter"></div>
+		<script src="js/iris.js"></script>
+	</body>
+</html>
