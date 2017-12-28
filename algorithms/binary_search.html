@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary Search</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link type="text/css" href="css/algorithms.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Binary Search</h1>
+    <div>This page is my first foray into the visualization of a process with <a href="www.d3js.org">d3</a>.
+     Usually, I am seeking to visualize data.  In this case, I'd like to show how a binary search functions.
+    Observe the following set of integers, drawn uniformly from the [0, 100] domain.</div>
+    <br/>
+    <div id="static_random_draws" width="800" height="200"></div>
+    <div>Our goal is to determine whether or not a number we are seeking is contained in the set. If you will
+    kindly provide a search target, we can get started.</div>
+    <br/>
+    <form name="search_target_form" onSubmit="return false">
+        <div>
+            <label for="search_target">Enter the integer you seek (and press Enter)...</label>
+        </div>
+        <input type="submit" class="submit_w_enter">
+        <input id="search_target" type="number" min="0" max="100" step="1" autofocus="true"
+               placeholder="Might want to keep that guy in the applicable number range">
+    </form>
+    <br/>
+    <div>Thanks for the input! The binary search algorithm works by partitioning the search space, and then
+    evaluating whether the number are seeking is higher or lower than the current breakpoint. Depending on
+    the outcome of that comparison, the promising subset of numbers is then searched, while the rest of the
+    numbers are ignored. The partitioning then occurs again, recursively, until the number is located or it
+    becomes clear that the number is not in the set. Since subsets are selected on a comparison of numeric
+    values, we must have a sorted array before the search can be executed.</div>
+    <br/>
+    <div>There are a wide variety of sorting methods that have been developed over time because it is a
+    critical, yet computationally intensive process. Perhaps we will revisit a few of these down the road,
+    but for now we will rely on the simple and inefficient selection sort. Suppose we have an unsorted
+        array (Array A) and we seek to produce a sorted array (Array B). In a nutshell, the selection
+    sort works as follows:</div>
+    <ol>
+        <li>Scan Array A</li>
+        <li>Assign the minimum value to the first position of Array B</li>
+        <li>Remove the minimum value from A</li>
+        <li>Scan Array A a second time</li>
+        <li>Assign the new minimum value to the second position of B</li>
+        <li>Remove this new minimum value from Array A</li>
+        <li>Repeat this process until all elements of A have been exhausted</li>
+    </ol>
+    <div>We can be even more explicit in our description with some fairly unambiguous code.</div>
+    <br/>
+    <pre>
+        <label style="color: #000000">One Implementation of Selection Sort...</label>
+        <code>
+            // Instantiate arrays (array A is populated, but unsorted)
+            var arr_a = [...]
+            var arr_b = []
+
+            // Develop a means to identify the location of the minimum
+            // value in A
+            function getMinValIdx(arr) {
+                // Assumes input array is all non-negative
+                var min_val = 101
+                var min_idx = 0
+                for (i = 0; i < arr_a.length; i++) {
+                    if (arr_a[i] < min_val) {
+                        min_val = arr_a[i]
+                        min_idx = i
+                    }
+                return min_idx
+            }
+
+            // Sort the array by way of populating B
+            for (i = 0; i < arr_a.length; i++) {
+                var sort_val_idx = getMinValIdx(arr_a)
+                arr_b.push(arr_a[sort_val_idx])
+                arr_a.pop(arr_a[sort_val_idx])
+            }
+        </code>
+    </pre>
+    <br/>
+    <div>So, what does this look like in action?</div>
+    <br/>
+    <div id="sort_int_container" width="1200" height="400">
+        <button id="start_sort">Sort</button>
+        <button id="reset_sort">Reset</button>
+        <div id="sort_ints" width="1200" height="400"></div>
+    </div>
+    <script type="text/javascript" src="js/binary_search.js"></script>
+</body>
+</html>

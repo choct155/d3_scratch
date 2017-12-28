@@ -1,0 +1,32 @@
+form {
+    /* Center on the page */
+    margin: 0 auto;
+    width: 508px;
+    height: 50px;
+    /* Make it stand out */
+    padding: 1em;
+    border: darkslategrey;
+    background: #000000;
+}
+
+label {
+    color: white;
+}
+label, form {
+    font-family: Courier;
+    font-size: large;
+}
+
+input {
+    font-family: Courier;
+    fill: #000000;
+    width: 500px;
+}
+
+.submit_w_enter {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    tab-index: -1;
+}
