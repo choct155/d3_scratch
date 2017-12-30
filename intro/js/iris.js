@@ -220,6 +220,7 @@ d3.csv("data/iris.csv", function(error, data) {
 	console.log(data['colors']);
 	console.log(data);
 	console.log(d3.map(data, function(d) { return d['colors']; }).keys());
+	console.log(d3.map(data, function(d) { return {d['colors']: d['class']}; }));
 	var legend_colors = d3.map(data, function(d) { return d['colors']; }).keys()
 	var legend = svg.selectAll(".legend")
 		.data(legend_colors)

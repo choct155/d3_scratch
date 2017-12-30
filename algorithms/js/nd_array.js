@@ -22,7 +22,7 @@ function emptyArray(d1, d2){
   return arr_out;
 }
 
-function constantArray(val=0,...dim){
+function constantArray(val,...dim){
   // Function returns an nd-array of the given constant value. Note that the ellipsis in
   // the function definition enables a variable number of arguments. Note that at least one
   // dimension value must be given, and all desired dimension extents must be defined as
@@ -33,7 +33,7 @@ function constantArray(val=0,...dim){
     arr_out.push(val);
   }
   // Reducing the dimension list on each pass provides a natural stopping point for recursion
-  dim.pop(dim[dim.length - 1])
+  dim.pop(dim[dim.length - 1]);
   if (dim.length == 0) {
     return arr_out;
   }
@@ -44,24 +44,27 @@ function constantArray(val=0,...dim){
   }
 }
 
-function countDims(arr, dim_cnt=0){
+function countDims(arr, dim_cnt){
   // Function returns the number of dimensions in an array. Note that we keep the dimension
   // count in the function arguments to ease updating during recursive calls.
-  if (Array.isArray(arr)) {
+    if (dim_cnt == undefined) {dim_cnt = 0};
+    if (Array.isArray(arr)) {
     dim_cnt++;
     countDims(arr[0], dim_cnt);
-  }
-  else {
-    return dim_cnt;
-  }
+    }
+    else {
+      console.log("The dimension count of this array is "+dim_cnt);
+      console.log("I am in the return space!")
+      return dim_cnt;
+    }
 }
 
 function getDimLengths(arr) {
   // Function leverages the dimension count to non-recursively capture dimension extent. It
   // returns a dictionary mapping {dim number : dim extent}.
-  dim_cnt = countDims(arr)
-  dim_len = {}
-  tmp_arr = arr
+  dim_cnt = countDims(arr);
+  dim_len = {};
+  tmp_arr = arr;
   for (i = 1; i < dim_cnt; i++){
    dim_len[i] = tmp_arr.length;
    tmp_arr = tmp_arr[0];
@@ -90,6 +93,6 @@ function randomIntArray(min, max, n) {
   }
   return randInts;
 };
-function
-function nd_array(target, data)
-var svg = d3.select(target)
+// function
+// function nd_array(target, data)
+// var svg = d3.select(target)
