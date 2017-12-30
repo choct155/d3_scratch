@@ -49,7 +49,7 @@ function countDims(arr, dim_cnt=0){
   // count in the function arguments to ease updating during recursive calls.
   if (Array.isArray(arr)) {
     dim_cnt++;
-    countDims(arr[0], dim_cnt);
+    return countDims(arr[0], dim_cnt);
   }
   else {
     return dim_cnt;
