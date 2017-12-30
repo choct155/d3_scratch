@@ -101,17 +101,10 @@ var user_value = d3.select("#search_target")
 // Now we will try a slightly different approach for our array visualization. Since
 // we will need to show it many times, let's create a function that returns a built
 // out canvas. Then we can just modify what we need off the base case.
-function arr_svg(target, data){
+function arr_viz(svg_elem, data){
 
-    // Create canvas
-    var target_svg = d3.select(target)
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
     // Generate groups to hang rectangles and text on
-    var target_grp = target_svg.selectAll("g")
+    var target_grp = svg_elem.selectAll("g")
         .data(data)
         .enter()
         .append("g")
@@ -141,9 +134,17 @@ function arr_svg(target, data){
     return target_svg
 }
 
+// Create a new canvas that can hold multiple arrays
+var sort_svg = d3.select("#sort_ints")
+    .append("svg")
+    .attr("width", 1000 + margin.left + margin.right)
+    .attr("height", 600 + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
 // Create two arrays
-var arr_a = arr_svg("#sort_ints", integers)
-var arr_b = arr_svg("#sort_ints", integers)
+var arr_a = arr_viz(sort_svg, integers)
+var arr_b = arr_viz(sort_svg, integers)
 // Move B down and "empty" via a blank fill.
 arr_b.selectAll("rect")
     .attr("y", y(4.5))
