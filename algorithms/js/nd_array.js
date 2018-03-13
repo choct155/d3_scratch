@@ -63,7 +63,7 @@ function getDimLengths(arr) {
   dim_cnt = countDims(arr);
   dim_len = {};
   tmp_arr = arr;
-  for (i = 1; i < dim_cnt; i++){
+  for (i = 1; i < dim_cnt + 1; i++){
    dim_len[i] = tmp_arr.length;
    tmp_arr = tmp_arr[0];
   }
@@ -80,6 +80,31 @@ function randomInteger(min, max) {
   var intApprox = (Math.random() * (max - min)) + min;
   return Math.floor(intApprox);
 };
+
+function getArrayPos(arr, pos_vec, val){
+    // Function can identify a valid position in an array with no a priori
+    // information about it's dimensionality
+    // Capture the number and extent of array dimensions
+    dim_cnt = countDims(arr);
+    // Drill down to the cell identified in the position vector
+    cell = arr
+    for (i = 1; i < dim_cnt; i++) { cell = cell[pos_vec[i]]; }
+    // Assign the value to the cell
+
+}
+function setArrayValues(arr) {
+    // Capture the number of dimensions and their extents
+    dims = getDimLengths(arr)
+    dim_cnt = Object.entries(dims).length
+    // Use a temporary array to help us navigate positions without a priori
+    // knowledge of the array's dimensions
+    tmp_arr = arr
+    for (i = 1; i < dim_cnt; i++) {
+        tmp_arr = tmp_arr[0]
+        console.log(tmp_arr)
+    }
+
+}
 
 function randomIntArray(min, max, n) {
   // Function returns an array of random integers of length n, drawn from
